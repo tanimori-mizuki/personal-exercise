@@ -2,6 +2,7 @@ package com.example9.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -34,6 +35,17 @@ public class UserRepository {
 		user.setTelephone(rs.getString("telephone"));
 		return user;
 	};
+	
+	
+	public User save(User user) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO users(name,email,password,zipcode,address,telephone) ");
+		sql.append("VALUES(:name,:email,:password,:zipcode,:address,:telephone)");
+		return template.update(sql.toString(), param);
+	}
+	
+	
 	
 	/**
 	 * メールアドレスとパスワードでユーザを検索します.
