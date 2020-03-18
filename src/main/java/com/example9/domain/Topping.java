@@ -7,13 +7,13 @@ public class Topping {
 	/** 名前 */
 	private String name;
 	/** Mの価格 */
-	private Integer price_m;
+	private Integer priceM;
 	/** Lの価格 */
-	private Integer price_l;
+	private Integer priceL;
 
 	@Override
 	public String toString() {
-		return "Topping [id=" + id + ", name=" + name + ", price_m=" + price_m + ", price_L=" + price_l + "]";
+		return "Topping [id=" + id + ", name=" + name + ", priceM=" + priceM + ", priceL=" + priceL + "]";
 	}
 
 	public Integer getId() {
@@ -32,20 +32,20 @@ public class Topping {
 		this.name = name;
 	}
 
-	public Integer getPrice_m() {
-		return price_m;
+	public Integer getPriceM() {
+		return priceM;
 	}
 
-	public void setPrice_m(Integer price_m) {
-		this.price_m = price_m;
+	public void setPriceM(Integer priceM) {
+		this.priceM = priceM;
 	}
 
-	public Integer getPrice_l() {
-		return price_l;
+	public Integer getPriceL() {
+		return priceL;
 	}
 
-	public void setPrice_l(Integer price_l) {
-		this.price_l = price_l;
+	public void setPriceL(Integer priceL) {
+		this.priceL = priceL;
 	}
 
 }
