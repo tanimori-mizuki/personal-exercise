@@ -36,10 +36,8 @@ public class UserRegisterController {
 	@RequestMapping("/insert")
 	public String insert(RegisterUserForm form) {
 		// formオブジェクトからuserオブジェクトにプロパティ値をコピー
-		System.out.println(form);
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
-		System.out.println(user);
 		userRegisterService.insert(user);	//user情報の登録
 		return index();
 	}

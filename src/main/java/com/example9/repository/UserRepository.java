@@ -43,7 +43,6 @@ public class UserRepository {
 	 */
 	public void insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
-		System.out.println(user);
 		String sql = "INSERT INTO users (name, email, password, zipcode, address, telephone)"
 				   + " VALUES (:name, :email, :password, :zipcode, :address, :telephone)";
 		template.update(sql, param);
@@ -55,7 +54,7 @@ public class UserRepository {
 	 * 
 	 * @param email　メール
 	 * @param password　パスワード
-	 * @return　1件のユーザ情報
+	 * @return　1件のユーザ情報(存在しない場合nullを返す）
 	 */
 	public User findByEmailAndPassword(String email, String password) {
 		StringBuilder sql = new StringBuilder();
@@ -63,6 +62,12 @@ public class UserRepository {
 		sql.append("FROM users ");
 		sql.append("WHERE email=:email and password=:password");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
-		return template.queryForObject(sql.toString(), param, USER_ROW_MAPPER);
+		//上記のSQL文を実行し、存在すればUserオブジェクトを返す、存在しなければnullを返す
+		try {
+			return template.queryForObject(sql.toString(), param, USER_ROW_MAPPER);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
