@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example9.domain.Item;
@@ -30,9 +28,9 @@ public class ItemRepository {
 		item.setId(rs.getInt("id"));
 		item.setName(rs.getString("name"));
 		item.setDescription(rs.getString("description"));
-		item.setPrice_m(rs.getInt("price_m"));
-		item.setPrice_l(rs.getInt("price_l"));
-		item.setImage_path(rs.getString("image_path"));
+		item.setPriceM(rs.getInt("price_m"));
+		item.setPriceL(rs.getInt("price_l"));
+		item.setImagePath(rs.getString("image_path"));
 		return item;
 	};
 

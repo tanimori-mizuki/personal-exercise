@@ -11,15 +11,21 @@ public class Item {
 	/** 説明 */
 	private String description;
 	/** Mの価格 */
-	private Integer price_m;
+	private Integer priceM;
 	/** Lの価格 */
-	private Integer price_l;
+	private Integer priceL;
 	/** 画像パス */
-	private String image_path;
+	private String imagePath;
 	/** 削除フラグ */
 	private Boolean deleted;
 	/** トッピングリスト */
 	private List<Topping> toppingList;
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
+				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
+	}
 
 	public Integer getId() {
 		return id;
@@ -45,28 +51,28 @@ public class Item {
 		this.description = description;
 	}
 
-	public Integer getPrice_m() {
-		return price_m;
+	public Integer getPriceM() {
+		return priceM;
 	}
 
-	public void setPrice_m(Integer price_m) {
-		this.price_m = price_m;
+	public void setPriceM(Integer priceM) {
+		this.priceM = priceM;
 	}
 
-	public Integer getPrice_l() {
-		return price_l;
+	public Integer getPriceL() {
+		return priceL;
 	}
 
-	public void setPrice_l(Integer price_l) {
-		this.price_l = price_l;
+	public void setPriceL(Integer priceL) {
+		this.priceL = priceL;
 	}
 
-	public String getImage_path() {
-		return image_path;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public Boolean getDeleted() {
@@ -83,13 +89,6 @@ public class Item {
 
 	public void setToppingList(List<Topping> toppingList) {
 		this.toppingList = toppingList;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price_m=" + price_m
-				+ ", price_l=" + price_l + ", image_path=" + image_path + ", deleted=" + deleted + ", toppingList="
-				+ toppingList + "]";
 	}
 
 }
