@@ -16,7 +16,7 @@ import com.example9.service.LoginService;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginContoroller {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class LoginContoroller {
 		return "login";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/user_login")
 	public String login(LoginUserForm form,Model model) {
 		User user = loginService.login(form.getEmail(), form.getPassword());
 		
