@@ -37,29 +37,35 @@ public class UserRepository {
 	};
 	
 	
-	public User save(User user) {
+	/**
+	 * ユーザー情報が入力されたら登録を行います.
+	 * @param user　ユーザー情報
+	 * @return　登録するユーザー情報
+	 */
+	public User insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO users(name,email,password,zipcode,address,telephone) ");
 		sql.append("VALUES(:name,:email,:password,:zipcode,:address,:telephone)");
-		return template.update(sql.toString(), param);
+		template.update(sql.toString(), param);
+		return user;
 	}
 	
 	
 	
-	/**
-	 * メールアドレスとパスワードでユーザを検索します.
-	 * 
-	 * @param email　メール
-	 * @param password　パスワード
-	 * @return　1件のユーザ情報
-	 */
-	public User findByEmailAndPassword(String email, String password) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id,name,email,password,zipcode,address,telephone ");
-		sql.append("FROM users ");
-		sql.append("WHERE email=:email and password=:password");
-		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
-		return template.queryForObject(sql.toString(), param, USER_ROW_MAPPER);
-	}
+//	/**
+//	 * メールアドレスとパスワードでユーザを検索します.
+//	 * 
+//	 * @param email　メール
+//	 * @param password　パスワード
+//	 * @return　1件のユーザ情報
+//	 */
+//	public User findByEmailAndPassword(String email, String password) {
+//		StringBuilder sql = new StringBuilder();
+//		sql.append("SELECT id,name,email,password,zipcode,address,telephone ");
+//		sql.append("FROM users ");
+//		sql.append("WHERE email=:email and password=:password");
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
+//		return template.queryForObject(sql.toString(), param, USER_ROW_MAPPER);
+//	}
 }
