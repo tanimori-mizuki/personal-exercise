@@ -1,5 +1,6 @@
 package com.example9.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,19 @@ public class ShowItemListController {
 		model.addAttribute("itemList", itemList);
 		return "item_list_toy";
 	}
+//	
+//	private List<Item> createThreeItemList(){
+//		List<Item>itemList = showItemListService.showItemList();	//	itemの全件検索
+//		int size = itemList.size();
+//		List<Item>itemListList = new ArrayList<>();
+//		// itemListの数になるまで繰り返す→itemListListに入れるのを
+//		for(int i =0 ; i <= size ; i++) {
+//			List<Item>threeItemList = new ArrayList<>();
+//			if(size % 3 == 0 || size <= 3) {
+//				threeItemList.add(itemList.get(i-1));
+//			}
+//			itemListList.addAll(threeItemList);
+//		}
+//		return itemListList;
+//	}
 }
