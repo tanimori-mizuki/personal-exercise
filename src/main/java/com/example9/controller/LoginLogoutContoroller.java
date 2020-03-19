@@ -1,5 +1,7 @@
 package com.example9.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +13,19 @@ import com.example9.form.LoginUserForm;
 import com.example9.service.LoginService;
 
 /**
- * ログインを行うコントローラーです.
+ * ログインとログアウトを行うコントローラーです.
  * @author mizuki.tanimori
  *
  */
 @Controller
 @RequestMapping("/login")
-public class LoginContoroller {
+public class LoginLogoutContoroller {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private HttpSession session;
 	
 	@ModelAttribute
 	public LoginUserForm setUpLoginUserForm() {
@@ -42,5 +47,11 @@ public class LoginContoroller {
 			return index();
 		} 
 		return "item_list_toy";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/login";
 	}
 }

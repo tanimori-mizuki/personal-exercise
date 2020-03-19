@@ -37,13 +37,14 @@ public class ItemRepository {
 	};
 
 	/**
-	 * 商品を全件検索します.
+	 * 商品を全件検索します.(価格降順）
 	 * @return　商品全件
 	 */
 	public List<Item> findAll(){
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id,name,description,price_m,price_l,image_path,deleted ");
-		sql.append("FROM items");
+		sql.append("FROM items ");
+		sql.append("ORDER BY price_m");
 		return template.query(sql.toString(), ITEM_ROW_MAPPER);
 	}
 	
