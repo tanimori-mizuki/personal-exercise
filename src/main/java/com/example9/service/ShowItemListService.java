@@ -28,4 +28,13 @@ public class ShowItemListService {
 	public List<Item> showItemList(){
 		return itemRepository.findAll();
 	}
+	
+	/**
+	 * 商品名で曖昧検索を行います.
+	 * @param name　名前
+	 * @return　検索された商品
+	 */
+	public List<Item> showByLikeNameItemList(String name){
+		return itemRepository.findByLikeName(name);
+	}
 }

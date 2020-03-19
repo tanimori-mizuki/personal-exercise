@@ -24,7 +24,14 @@ public class ShowItemListController {
 		model.addAttribute("itemList", itemList);
 		return "item_list_toy";
 	}
-//	
+	
+	@RequestMapping("/serch")
+	public String showSerchByLikeName(String code, Model model){
+		List<Item>itemList = showItemListService.showByLikeNameItemList(code);
+		model.addAttribute("itemList", itemList);
+		return "redirect:/item_list_toy";
+	}
+	
 //	private List<Item> createThreeItemList(){
 //		List<Item>itemList = showItemListService.showItemList();	//	itemの全件検索
 //		int size = itemList.size();
@@ -33,7 +40,7 @@ public class ShowItemListController {
 //		for(int i =0 ; i <= size ; i++) {
 //			List<Item>threeItemList = new ArrayList<>();
 //			if(size % 3 == 0 || size <= 3) {
-//				threeItemList.add(itemList.get(i-1));
+//				threeItemList.add(itemList.get(i));
 //			}
 //			itemListList.addAll(threeItemList);
 //		}

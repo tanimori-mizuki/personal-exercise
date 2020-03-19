@@ -61,4 +61,19 @@ public class ItemRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		return template.queryForObject(sql.toString(), param, ITEM_ROW_MAPPER);
 	}
+	
+	/**
+	 * 商品の曖昧検索を行います.
+	 * @param name　名前
+	 * @return　検索された商品
+	 */
+	public List<Item> findByLikeName(String name){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT id,name,description,price_m,price_l,image_path,deleted ");
+		sql.append("FROM items ");
+		sql.append("WHERE name LIKE :name ");
+		sql.append("ORDER BY price_m");
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
+		return template.query(sql.toString(), param, ITEM_ROW_MAPPER);
+	}
 }
