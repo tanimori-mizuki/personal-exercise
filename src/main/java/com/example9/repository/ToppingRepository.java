@@ -42,4 +42,5 @@ public class ToppingRepository {
 		sql.append("FROM toppings");
 		return template.query(sql.toString(), TOPPING_ROW_MAPPER);
 	}
+	
 }

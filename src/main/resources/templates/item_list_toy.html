@@ -25,7 +25,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ --> <img
+					<a class="navbar-brand" href="item_list.html" th:href="@{/}"> <!-- 企業ロゴ --> <img
 						alt="main log" src="img_toy/header_logo.png" height="35">
 					</a>
 				</div>
@@ -36,7 +36,7 @@
 					<p class="navbar-text navbar-right">
 						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="login.html" class="navbar-link" th:href="@{/login}">ログイン</a>&nbsp;&nbsp;
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
@@ -81,11 +81,11 @@
 						<tr th:each="item:${itemList}">
 
 							<th>
-								<a href="item_detail.html" >
-									<img src="img_toy/1.jpg" 
-										class="img-responsive img-rounded" width="200" height="600">
+								<a href="item_detail.html" th:href="@{'/itemDetail?id=' + ${item.id}}">
+									<img src="img_toy/1.jpg" th:src="'img_toy/'+${item.imagePath}"
+										class="img-responsive img-rounded" width="200" height="600" >
 								</a><br>
-								<a href="item_detail.html" th:text="${item.name}">じゃがバターベーコン</a><br>
+								<a href="item_detail.html" th:href="@{'/itemDetail?id=' + ${item.id}}" th:text="${item.name}">じゃがバターベーコン</a><br>
 								<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
 								<span th:text="${#numbers.formatInteger(item.priceM,2,'COMMA')}">1,380</span>円(税抜)<br>
 								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
