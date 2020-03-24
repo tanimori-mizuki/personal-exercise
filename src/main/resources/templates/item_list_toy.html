@@ -54,7 +54,7 @@
 						<div class="panel-title">商品を検索する</div>
 					</div>
 					<div class="panel-body">
-						<form method="post" action="#" class="form-horizontal">
+						<form method="post" action="#" class="form-horizontal" th:action="@{/serch}">
 							<div class="form-group">
 								<label for="code" class="control-label col-sm-2">商品名</label>
 								<div class="col-sm-9">
@@ -78,9 +78,9 @@
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<table class="table table-striped">
 					<tbody>
-						<tr th:each="item:${itemList}">
+						<tr th:each="itemList:${itemListList}">
 
-							<th>
+							<th th:each="item:${itemList}">
 								<a href="item_detail.html" th:href="@{'/itemDetail?id=' + ${item.id}}">
 									<img src="img_toy/1.jpg" th:src="'img_toy/'+${item.imagePath}"
 										class="img-responsive img-rounded" width="200" height="600" >

@@ -18,13 +18,26 @@ public class ShowItemListController {
 	@Autowired
 	private ShowItemListService showItemListService;
 	
+	/**
+	 * 商品の一覧表示を行います.
+	 * @param model
+	 * @return　商品一覧表示
+	 */
 	@RequestMapping("/")
 	public String showItemList(Model model){
 		List<Item>itemList = showItemListService.showItemList();
-		model.addAttribute("itemList", itemList);
+		List<List<Item>>itemListList = new ArrayList<>();
+		itemListList = getThreeItemList(itemList);
+		model.addAttribute("itemListList", itemListList);
 		return "item_list_toy";
 	}
 	
+	/**
+	 * 検索結果の一覧を表示します.
+	 * @param code　入力された商品名
+	 * @param model　リクエストスコープ
+	 * @return　商品一覧表示
+	 */
 	@RequestMapping("/serch")
 	public String showSerchByLikeName(String code, Model model){
 		List<Item>itemList = showItemListService.showByLikeNameItemList(code);
@@ -32,18 +45,24 @@ public class ShowItemListController {
 		return "redirect:/item_list_toy";
 	}
 	
-//	private List<Item> createThreeItemList(){
-//		List<Item>itemList = showItemListService.showItemList();	//	itemの全件検索
-//		int size = itemList.size();
-//		List<Item>itemListList = new ArrayList<>();
-//		// itemListの数になるまで繰り返す→itemListListに入れるのを
-//		for(int i =0 ; i <= size ; i++) {
-//			List<Item>threeItemList = new ArrayList<>();
-//			if(size % 3 == 0 || size <= 3) {
-//				threeItemList.add(itemList.get(i));
-//			}
-//			itemListList.addAll(threeItemList);
-//		}
-//		return itemListList;
-//	}
+
+	/**
+	 * 3列表示をするためのメソッド
+	 * @param itemList　アイテムリスト
+	 * @return　itemListList
+	 */
+	private List<List<Item>> getThreeItemList(List<Item> itemList){
+		List<List<Item>>itemListList = new ArrayList<>();
+		List<Item>threeItemList = new ArrayList<>();
+		
+		for(int i = 1 ; i <= itemList.size() ; i++) {
+			threeItemList.add(itemList.get(i-1));
+			
+			if(i % 3 == 0 || i == itemList.size()) {
+				itemListList.add(threeItemList);
+				threeItemList = new ArrayList<>();
+			}
+		}
+		return itemListList;
+	}
 }

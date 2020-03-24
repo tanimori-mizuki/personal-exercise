@@ -1,18 +1,32 @@
 package com.example9.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class RegisterUserForm {
 
 	/** 名前 */
+	@NotBlank(message="お名前を入力してください")
 	private String name;
 	/** メール */
+	@Email(message="アドレスが不正です")
+	@NotBlank(message="メールアドレスを入力してください")
 	private String email;
 	/** パスワード */
+	@NotBlank(message="パスワードを入力してください")
+	@Pattern(regexp="^(?=.*[a-z])(?=.*[0-9])[!-~] {8,20}$",message="パスワードを入力してください")
 	private String password;
 	/** 郵便番号 */
+	@NotBlank(message="郵便番号を入力してください")
+	@Pattern(regexp="^[0-9] {7}$",message="郵便番号はハイフン無の7桁で入力してください")
 	private String zipcode;
 	/** 住所 */
+	@NotBlank(message="住所を入力してください")
 	private String address;
 	/** 電話番号 */
+	@NotBlank(message="電話番号を入力してください")
+	@Pattern(regexp="^[0-9]+$",message="電話番号は数値を入力してください")
 	private String telephone;
 	
 	
