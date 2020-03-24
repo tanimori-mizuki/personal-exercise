@@ -41,8 +41,15 @@ public class ShowItemListController {
 	@RequestMapping("/serch")
 	public String showSerchByLikeName(String code, Model model){
 		List<Item>itemList = showItemListService.showByLikeNameItemList(code);
-		model.addAttribute("itemList", itemList);
-		return "redirect:/item_list_toy";
+		
+		if(itemList.size() == 0) {
+			String message = "検索結果がありません。";
+			model.addAttribute("message", message);
+		}
+		List<List<Item>>itemListList = new ArrayList<>();
+		itemListList = getThreeItemList(itemList);
+		model.addAttribute("itemListList", itemListList);
+		return "item_list_toy";
 	}
 	
 

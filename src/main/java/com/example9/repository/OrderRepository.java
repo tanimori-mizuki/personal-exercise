@@ -1,5 +1,6 @@
 package com.example9.repository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,18 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import com.example9.domain.Item;
 import com.example9.domain.Order;
+import com.example9.domain.OrderItem;
+import com.example9.domain.OrderTopping;
+import com.example9.domain.Topping;
 
 /**
  * Orderを操作するリポジトリ.
@@ -41,20 +49,6 @@ public class OrderRepository {
 		SimpleJdbcInsert withTableName = simpleJdbcInsert.withTableName("order");
 		//自動生成キーを持つ列の名前を指定
 		insert = withTableName.usingGeneratedKeyColumns("id");
-	}
-	
-	private ResultSetExtractor<List<Order>>RESULT_SET_EXTRACTOR=(rs)->{
-		List<Order>orderList = new ArrayList<>();
-		List<OrderItem>orderItemList;
-		List<OrderTopping>orderToppingList;
-		
-		Integer orderIdOneBefore = 0;
-		Integer orderItemIdOneBefore = 0;
-		
-		Order order = new Order();
-		order.setId(rs.getInt("id"));
-		order.setUserId(rs.getInt("user_id"));
-		
 	}
 	
 }

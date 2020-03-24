@@ -44,8 +44,9 @@ public class LoginLogoutContoroller {
 		if(user == null) {	//	メールアドレス、パスワードがない場合
 			String message = "メールアドレスまたはパスワードが不正です";
 			model.addAttribute("message", message);
+			return "/login";
 		} 
-		return "login";
+		return "forward:/";
 	}
 	
 	@RequestMapping("/logout")
