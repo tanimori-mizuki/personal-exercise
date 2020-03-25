@@ -36,8 +36,8 @@
 					<p class="navbar-text navbar-right">
 						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link">ログアウト</a>
+						<a href="login.html" class="navbar-link" th:href="@{/login}">ログイン</a>&nbsp;&nbsp;
+						<a href="item_list.html" class="navbar-link" th:href="@{/login/logout}">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -73,15 +73,15 @@
 								<div class="col-sm-12">
 									<label class="radio-inline">
 										<input type="radio"
-											name="responsibleCompany" checked="checked">
+											name="responsibleCompany" checked="checked" value="M">
 										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
-										<span th:text="${#numbers.formatInteger(item.priceM,1,'COMMA')}">1,380</span>円(税抜)
+										<span th:text="${#numbers.formatInteger(item.priceM,1,'COMMA')}" id="sizeM">1,380</span>円(税抜)
 									</label>
 									<label class="radio-inline">
 										<input type="radio"
-											name="responsibleCompany">
+											name="responsibleCompany" value="L">
 										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
-										<span th:text="${#numbers.formatInteger(item.priceL,2,'COMMA')}">2,380</span>円(税抜)
+										<span th:text="${#numbers.formatInteger(item.priceL,2,'COMMA')}" id="sizeL">2,380</span>円(税抜)
 									</label>
 								</div>
 							</div>
@@ -97,9 +97,9 @@
 									<label for="inputResponsibleCompany" >
 										トッピング：&nbsp;1つにつき
 										<span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;
-										<span th:text="${toppingPriceM}">200</span>円(税抜)
+										<span th:text="${toppingPriceM}" id="toppingsizeM">200</span>円(税抜)
 										<span>&nbsp;Ｌ</span>&nbsp;&nbsp;
-										<span th:text="${toppingPriceL}">300</span>円(税抜)
+										<span th:text="${toppingPriceL}" id="toppingsizeL">300</span>円(税抜)
 									</label>
 								</div>
 								<div class="col-sm-12"  th:each="topping:${item.toppingList}">
@@ -119,7 +119,7 @@
 									<label for="">数量:</label>
 									<label class="control-label"
 										style="color: red" for="inputError">数量を選択してください</label> <select
-										name="area" class="form-control">
+										name="area" class="form-control" id="count">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -165,6 +165,6 @@
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="bootstrap.min.js"></script>
 </body>
 </html>

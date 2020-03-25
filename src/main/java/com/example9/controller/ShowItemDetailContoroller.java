@@ -1,6 +1,7 @@
 package com.example9.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,5 @@ public class ShowItemDetailContoroller {
 		
 		return "item_detail";
 	}
-	
-	
 	
 }
