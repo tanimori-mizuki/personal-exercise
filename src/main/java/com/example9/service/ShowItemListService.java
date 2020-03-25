@@ -35,6 +35,10 @@ public class ShowItemListService {
 	 * @return　検索された商品
 	 */
 	public List<Item> showByLikeNameItemList(String name){
+		List<Item>itemList = itemRepository.findByLikeName(name);
+		if(itemList.size()==0) {
+			return null;
+		}
 		return itemRepository.findByLikeName(name);
 	}
 }

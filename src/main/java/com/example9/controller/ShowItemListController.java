@@ -42,9 +42,10 @@ public class ShowItemListController {
 	public String showSerchByLikeName(String code, Model model){
 		List<Item>itemList = showItemListService.showByLikeNameItemList(code);
 		
-		if(itemList.size() == 0) {
+		if(itemList == null) {
 			String message = "検索結果がありません。";
 			model.addAttribute("message", message);
+			return showItemList(model);
 		}
 		List<List<Item>>itemListList = new ArrayList<>();
 		itemListList = getThreeItemList(itemList);
